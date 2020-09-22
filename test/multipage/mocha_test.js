@@ -8,6 +8,7 @@
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
+const firefox = require('selenium-webdriver/firefox');
 const By = webdriver.By;
 
 let browser;
