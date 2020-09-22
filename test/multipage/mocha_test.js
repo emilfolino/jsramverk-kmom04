@@ -20,8 +20,10 @@ let browser;
 
 // Test suite
 test.describe("Multipage", function() {
+
+    this.timeout(0);
+
     test.beforeEach(function(done) {
-        this.timeout(20000);
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox())
             .setFirefoxOptions(new firefox.Options().headless())
@@ -62,20 +64,21 @@ test.describe("Multipage", function() {
 
     // Test case
     test.it("Test index", function(done) {
-        let promise = browser.getTitle();
+        // let promise = browser.getTitle();
+        //
+        // // promise.then(function(title) {
+        // //     assert.equal(title, "Multipage");
+        // // });
 
-        promise.then(function(title) {
-            assert.equal(title, "Multipage");
-        });
-
-        browser.getTitle().then(function(title) {
-            assert.equal(title, "Multipage");
-        });
-
-        assertH1("Home");
-        matchUrl("#!/");
-
-        done();
+        browser.getTitle()
+            .then(function(title) {
+                assert.equal(title, "Multipage");
+            }).then(function() {
+                assertH1("Home");
+                matchUrl("#!/");
+            }).then(() => {
+                done();
+            });
     });
 
 
