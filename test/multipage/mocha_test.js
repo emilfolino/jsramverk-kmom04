@@ -43,7 +43,7 @@ test.describe("Multipage", function() {
 
     this.timeout(0);
 
-    test.beforeEach(function(done) {
+    beforeEach(function(done) {
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox())
             .setFirefoxOptions(new firefox.Options().headless())
@@ -54,7 +54,7 @@ test.describe("Multipage", function() {
         done();
     });
 
-    test.afterEach(function(done) {
+    afterEach(function(done) {
         browser.quit();
         done();
     });
@@ -74,9 +74,7 @@ test.describe("Multipage", function() {
             }).then(function() {
                 assertH1("Home");
                 matchUrl("#!/");
-            }).then(() => {
-                done();
-            });
+            }).then(() => done());
     });
 
 
