@@ -62,19 +62,20 @@ test.describe("Multipage", function() {
 
     // Test case
     test.it("Test index", function(done) {
-        // let promise = browser.getTitle();
-        //
-        // // promise.then(function(title) {
-        // //     assert.equal(title, "Multipage");
-        // // });
+        let promise = browser.getTitle();
 
-        browser.getTitle()
-            .then(function(title) {
-                assert.equal(title, "Multipage");
-            }).then(function() {
-                assertH1("Home");
-                matchUrl("#!/");
-            }).then(() => done());
+        promise.then(function(title) {
+            assert.equal(title, "Multipage");
+        });
+
+        browser.getTitle().then(function(title) {
+            assert.equal(title, "Multipage");
+        });
+
+        assertH1("Home");
+        matchUrl("#!/");
+
+        done();
     });
 
 
