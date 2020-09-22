@@ -16,6 +16,26 @@ let browser;
 
 // Does not work with WSL!! Use cygwin
 
+function goToNavLink(target) {
+    browser.findElement(By.linkText(target)).then(function(element) {
+        element.click();
+    });
+}
+
+function matchUrl(target) {
+    browser.getCurrentUrl().then(function(url) {
+        assert.ok(url.endsWith("multipage/" + target));
+    });
+}
+
+function assertH1(target) {
+    browser.findElement(By.css("h1")).then(function(element) {
+        element.getText().then(function(text) {
+            assert.equal(text, target);
+        });
+    });
+}
+
 
 
 // Test suite
@@ -38,28 +58,6 @@ test.describe("Multipage", function() {
         browser.quit();
         done();
     });
-
-
-    function goToNavLink(target) {
-        browser.findElement(By.linkText(target)).then(function(element) {
-            element.click();
-        });
-    }
-
-    function matchUrl(target) {
-        browser.getCurrentUrl().then(function(url) {
-            assert.ok(url.endsWith("multipage/" + target));
-        });
-    }
-
-    function assertH1(target) {
-        browser.findElement(By.css("h1")).then(function(element) {
-            element.getText().then(function(text) {
-                assert.equal(text, target);
-            });
-        });
-    }
-
 
 
     // Test case
