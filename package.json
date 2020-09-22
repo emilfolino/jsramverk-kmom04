@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node node_modules/http-server/bin/http-server -p 8082 src",
-    "test": "mocha test/**/*.js"
+    "test-command": "mocha test/**/*.js",
+    "test": "npm start & npm run test-command"
   },
   "author": "Andreas Arnesson and Emil Folino",
   "license": "MIT",
